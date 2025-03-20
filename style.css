@@ -144,6 +144,18 @@
     --border-radius-1: 0.25rem;
     --border-radius-2: 0.5rem;
     --border-radius-3: 0.75rem;
+    
+
+    @media (prefers-color-shceme: light){
+      --text-main: var(--clr-gray-700);
+      --text-brand-light: var(--clr-brand-900);
+  
+      --background-extra-light: var(--clr-brown-100);
+      --background-light: var(--clr-brown-200);
+      --background-main: var(--clr-brown-300);
+      --background-dark: var(--clr-brown-400);
+      --background-extra-dark: var(--clr-brown-500);      
+    }
   }
 }
 
