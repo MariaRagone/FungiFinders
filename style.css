@@ -148,6 +148,10 @@
 }
 
 @layer base {
+  @view-transition {
+    navigation: auto;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
@@ -314,6 +318,11 @@
 
     .primary-navigation {
       display: none;
+      opacity: 0;
+
+      transition: display 1s, opacity 1s;
+      transition-behavior: allow-discrete;
+
       position: absolute;
       z-index: 10;
       top: 0;
@@ -330,6 +339,22 @@
         font-weight: 700;
       }
 
+      li {
+        translate: 0;
+        opacity: 1;
+
+        transition: opacity 300ms, translate 875ms;
+        transition-delay: var(--delay, 125ms);
+
+        &:nth-child(2) {
+          --delay: 250ms;
+        }
+
+        &:nth-child(3) {
+          --delay: 325ms;
+        }
+      }
+
       li + li {
         margin-top: 1rem;
         padding-top: 1rem;
@@ -339,6 +364,22 @@
 
     [aria-expanded="true"] ~ .primary-navigation {
       display: block;
+      opacity: 1;
+
+      @starting-style {
+        display: block;
+        opacity: 0;
+      }
+
+      li {
+        translate: 0;
+        opacity: 1;
+
+        @starting-style {
+          translate: 100%;
+          opacity: 0;
+        }
+      }
     }
   }
 
@@ -374,6 +415,10 @@
     background-size: cover;
     font-size: var(--font-size-md);
     color: var(--text-high-contrast);
+
+    animation: fade-out forwards;
+    animation-timeline: view();
+    animation-range-start: exit;
   }
 
   .hero__title {
@@ -595,5 +640,14 @@
     position: absolute;
     white-space: nowrap;
     width: 1px;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
