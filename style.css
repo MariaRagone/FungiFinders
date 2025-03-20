@@ -145,6 +145,10 @@
       --border-radius-2: 0.5rem;
       --border-radius-3: 0.75rem;
     }
+    html {
+      font-family: var(--ff-body);  
+      line-height: 1.6;
+    }
   }
   
   @layer base {
@@ -399,7 +403,8 @@
     .button:hover,
     .button:focus-visible {
       background: var(--background-accent-light);
-      color: var(--text-high-contrast);
+      color: var(--
+      -high-contrast);
     }
   }
   
